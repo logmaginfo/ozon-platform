@@ -12,6 +12,31 @@ function ozon_add_admin_menu() {
 }
 
 function ozon_options_page() {
+    // Вывод заголовка страницы
+    echo '<h1>Ozon Plugin Settings</h1>';
+    // Проверка и вывод ошибок
+    if ( isset( $_GET['settings-updated'] ) ) {
+        add_settings_error( 'ozon_messages', 'ozon_message', 'Настройки сохранены', 'updated' );
+    }
+    settings_errors('ozon_messages');
+    
+    echo '<form action="options.php" method="POST">';
+    // Регистрация настроек
+    settings_fields('ozon_options_group');
+    
+    // Вывод поля Client ID
+    echo '<label for="ozon_client_id">Client ID</label>';
+    echo '<input type="text" id="ozon_client_id" name="ozon_client_id" value="' . esc_attr( get_option('ozon_client_id') ) . '" />';
+    
+    // Вывод поля API Key
+    echo '<label for="ozon_api_key">API Key</label>';
+    echo '<input type="text" id="ozon_api_key" name="ozon_api_key" value="' . esc_attr( get_option('ozon_api_key') ) . '" />';
+    
+    submit_button('Сохранить изменения');
+    echo '</form>';
+    
+    // Регистрация настроек
+    ozon_register_settings();
 function ozon_register_settings() {
     register_setting('ozon_options_group', 'ozon_client_id');
     register_setting('ozon_options_group', 'ozon_api_key');
