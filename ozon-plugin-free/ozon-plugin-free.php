@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Include dependencies
-require_once plugin_dir_path( __FILE__ ) . 'includes/ozon-settings.php';
+require_once plugin_dir_path( __FILE__ ) . 'admin/ozon-settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/ozon-client.php';
 
 // Activation hook
