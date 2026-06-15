@@ -106,6 +106,24 @@ function ozon_validate_settings($input) {
 
     return $validated_input;
 }
+// Validation function
+function ozon_validate_settings($input) {
+    $validated_input = [];
+
+    if (empty($input['ozon_client_id'])) {
+        add_settings_error('ozon_messages', 'empty_client_id', 'Client ID не может быть пустым!', 'error');
+    } else {
+        $validated_input['ozon_client_id'] = sanitize_text_field($input['ozon_client_id']);
+    }
+
+    if (empty($input['ozon_api_key'])) {
+        add_settings_error('ozon_messages', 'empty_api_key', 'API Key не может быть пустым!', 'error');
+    } else {
+        $validated_input['ozon_api_key'] = sanitize_text_field($input['ozon_api_key']);
+    }
+
+    return $validated_input;
+}
 function ozon_validate_settings($input) {
     $validated_input = [];
 
